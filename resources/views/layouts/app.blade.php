@@ -88,11 +88,11 @@
        <div style="display: flex; justify-content: space-between;">
 
 
-            <div class=".col-md-3" style="width: 25%">
+            <div class=".col-md-3" style="width: 25%;">
                 @guest
 
                 @else
-                <div  id="sidebar" style="z-index: 998; height:100%; padding-top: 70px; background: rgb(161, 241, 161);">
+                <div  id="sidebar" style="z-index: 998; height: 100%; padding-top: 70px; background: rgb(161, 241, 161);">
                     <nav id="sidebar-nav"  style="position: fixed">
                         <ul class="col-1 nav nav-pills nav-stacked">
                             <li>Hello</li>
@@ -105,7 +105,7 @@
       
 
 
-            <div class=".col-md-8" style="padding-top: 70px; width: 70%">
+            <div class=".col-md-8" style="padding-top: 70px; width: 70%;">
                 <main class="py-4">
                     @yield('content')
                 </main>
