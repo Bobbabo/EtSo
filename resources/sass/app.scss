@@ -7,11 +7,16 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+.wrapper, html, body {
+    height: 100%;
+    margin: 0;
+}
+
 #navbar {
     
     
 }
 
 #sidebar{
-    background-color: green;
+    
 }

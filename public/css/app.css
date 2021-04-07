@@ -10662,6 +10662,13 @@ a.text-dark:focus {
   }
 }
 
+.wrapper,
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
 #sidebar {
   background-color: green;
 }

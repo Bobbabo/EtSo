@@ -85,40 +85,40 @@
 
         <!-- sidebar nav -->
 
+        
+
        <div style="display: flex; justify-content: space-between;">
 
 
-            <div class=".col-md-3" style="width: 25%;">
+            <div class=".col-md-3" style="width: 25%; ">
                 @guest
 
                 @else
-                <div  id="sidebar" style="z-index: 998; height: 100%; padding-top: 70px; background: rgb(161, 241, 161);">
-                    <nav id="sidebar-nav"  style="position: fixed">
+                <div  id="sidebar" style="z-index: 998; height: 100%;">
+                    <nav id="sidebar-nav"  style="position: fixed; background: rgb(161, 241, 161); height: 100%; width: 25%;  padding-top: 70px; ">
                         <ul class="col-1 nav nav-pills nav-stacked">
-                            <li>Hello</li>
+                            <li>HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello</li>
+                            <li>1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950</li>
                         </ul>
                     </nav>
                 </div>
                 @endguest
             </div>
 
-      
-
-
-            <div class=".col-md-8" style="padding-top: 70px; width: 70%;">
+            <div class=".col-md-8" style="padding-top: 70px; width: 25%;">
                 <main class="py-4">
                     @yield('content')
                 </main>
             </div>
-
     
-            <div class=".col-md-3" style="width: 25%;" >
+            <div class=".col-md-3" style="width: 25%; " >
                 @guest
                 @else
-                <div  id="sidebar"  style="z-index: 998; height:100%; padding-top: 70px; background: rgb(161, 241, 161);">
-                    <nav id="sidebar-nav" style="position: fixed">
+                <div  id="sidebar"  style="z-index: 998; height:100%;">
+                    <nav id="sidebar-nav" style="position: fixed;  background: rgb(161, 241, 161); height: 100%; width: 25%;  padding-top: 70px;">
                         <ul class="col-1 nav nav-pills nav-stacked">
-                            <li>Hello</li>
+                            <li>HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello</li>
+                            <li>1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950</li>
                         </ul>
                     </nav>
                 </div>
