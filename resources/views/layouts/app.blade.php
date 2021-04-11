@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="position: fixed; z-index: 999; background: rgb(192, 255, 192); width: 100%;">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="position: fixed; z-index: 999; background: #D6FFE9; width: 100%;">
             <div id="navbar" class="container">
                 
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">                  
@@ -95,17 +95,16 @@
 
                 @else
                 <div  id="sidebar" style="z-index: 998; height: 100%;">
-                    <nav id="sidebar-nav"  style="position: fixed; background: rgb(161, 241, 161); height: 100%; width: 25%;  padding-top: 70px; ">
+                    <nav id="sidebar-nav"  style="position: fixed; background: #B5FFC1; height: 100%; width: 25%;  padding-top: 70px; ">
                         <ul class="col-1 nav nav-pills nav-stacked">
-                            <li>HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello</li>
-                            <li>1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950</li>
+                            <li></li>
                         </ul>
                     </nav>
                 </div>
                 @endguest
             </div>
 
-            <div class=".col-md-8" style="padding-top: 70px; width: 25%;">
+            <div class=".col-md-8" style="padding-top: 70px; width: 40%;">
                 <main class="py-4">
                     @yield('content')
                 </main>
@@ -115,10 +114,9 @@
                 @guest
                 @else
                 <div  id="sidebar"  style="z-index: 998; height:100%;">
-                    <nav id="sidebar-nav" style="position: fixed;  background: rgb(161, 241, 161); height: 100%; width: 25%;  padding-top: 70px;">
+                    <nav id="sidebar-nav" style="position: fixed;  background: #B5FFC1; height: 100%; width: 25%;  padding-top: 70px;">
                         <ul class="col-1 nav nav-pills nav-stacked">
-                            <li>HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello</li>
-                            <li>1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950</li>
+                            <li></li>
                         </ul>
                     </nav>
                 </div>
