@@ -10,7 +10,7 @@
 
                     <textarea placeholder="Type your comment" id="message"
                         class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}"
-                        name="message">
+                        name="caption">
                     </textarea>
                 
                     @if ($errors->has('message'))
@@ -18,7 +18,6 @@
                             <strong>{{ $errors->first('message') }}</strong>
                         </span>
                     @endif
-                                    
                     <input type="hidden" name="post_id" value="{{ $post_id }}" />
                     <button class="btn btn-primary">Post Comment</button>
                                    

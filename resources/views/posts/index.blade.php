@@ -5,7 +5,7 @@
     <div class="scrolling-pagination">
         @foreach($posts as $post)
             <a href="/p/{{ $post->id }}">
-                <article class="postbox" style="margin-bottom: 20px">
+                <article class="postbox" style="margin-bottom: 20px;padding-top:20px">
                     <div class="row">
                         <div class="col-6 offset-3">
                             <a href="/p/{{ $post->id }}">

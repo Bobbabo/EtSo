@@ -17,7 +17,7 @@ class PostsController extends Controller
     {
         $users = auth()->user()->following()->pluck('profiles.user_id');
 
-        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
+        $posts = Post::whereIn('user_id', $users)->with('user')->where('post_id','=',0)->latest()->paginate(5);
 
         return view('posts.index', compact('posts'));
     }
@@ -31,7 +31,7 @@ class PostsController extends Controller
     {
         $data = request()->validate([
             'caption' => 'required',
-            'image' => ['required','image'],
+            'image' => ['image'],
         ]);
 
         $imagePath = request('image')->store('uploads', 'public');
@@ -42,6 +42,7 @@ class PostsController extends Controller
         auth()->user()->posts()->create([
             'caption' => $data['caption'],
             'image' => $imagePath,
+            'post_id'  => 0
         ]);
 
         return redirect('/profile/' . auth()->user()->id);
@@ -50,5 +51,35 @@ class PostsController extends Controller
     public function show(\App\Post $post)
     {
         return view('posts.show', compact('post'));
+    }
+
+
+
+    # Comment logic
+
+    public function commentIndex()
+    {
+        
+        return view('comments.index', compact('comments'));
+    }
+
+    public function commentStore()
+    {
+        $data = request()->validate([
+            'caption'=> 'required',
+            'post_id'=> 'required',
+        ]);
+
+        $cap = nl2br($data['caption']);
+
+        auth()->user()->posts()->create([
+            'caption' => $cap,
+            'user_id' => auth()->user()->id,
+            'image' => "auth()->user()->image",
+            'post_id' => $data['post_id'],
+        ]);
+
+
+        return back();
     }
 }
