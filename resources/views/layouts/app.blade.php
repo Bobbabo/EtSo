@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body style="overflow-x:hidden">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="position: fixed; z-index: 999; background: #D6FFE9; width: 100%;">
             <div id="navbar" class="container">

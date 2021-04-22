@@ -1,32 +1,34 @@
 @extends('layouts.app')
-
-
 @section('content')
-
 
 <div class="container">
     <div class="scrolling-pagination">
         @foreach($posts as $post)
-            <div class="row">
-                <div class="col-6 offset-3">
-                    <a href="/p/{{ $post->id }}">
-                        <img src="/storage/{{ $post->image }}" class="w-100">
-                    </a>
-                </div>
-            </div>
-            <div class="row pt-2 pb-4">
-                <div class="col-6 offset-3">
-                    <div>
-                        <p>
-                        <span class="font-weight-bold">
-                            <a href="/profile/{{ $post->user->id }}">
-                                <span class="text-dark">{{ $post->user->username }}</span>
+            <a href="/p/{{ $post->id }}">
+                <article class="postbox" style="margin-bottom: 20px">
+                    <div class="row">
+                        <div class="col-6 offset-3">
+                            <a href="/p/{{ $post->id }}">
+                                <img src="/storage/{{ $post->image }}" class="w-100">
                             </a>
-                        </span> {{ $post->caption }}
-                        </p>
+                        </div>
                     </div>
-                </div>
-            </div>
+                    <div class="row pt-2 pb-4">
+                        <div class="col-6 offset-3">
+                            <div style="overflow: hidden">
+                                <p>
+                                <span class="font-weight-bold">
+                                    <a href="/profile/{{ $post->user->id }}">
+                                        <span class="text-dark">{{ $post->user->username }}</span>
+                                    </a>
+                                </span> {{ $post->caption }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </a>
+
         @endforeach
 
             <div class="row">
@@ -56,6 +58,12 @@
             }
         });
     });
+
+    $(".postbox").click(function() {
+        window.location = $(this).find("a").attr("href"); 
+        return false;
+    });
+
 </script>
 
 @endsection

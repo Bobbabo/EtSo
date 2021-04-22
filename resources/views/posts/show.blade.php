@@ -30,9 +30,11 @@
                             <span class="text-dark">{{ $post->user->username }}</span>
                         </a>
                     </span> {{ $post->caption }}
-                </p>
-            </div>
+                </p>               
+            </div>       
         </div>
+        @include('comments.create',['post_id'=> $post->id])
+        @include('comments.index',['comments' => $post->comments, 'post_id' => $post->id])
     </div>
 </div>
 @endsection
