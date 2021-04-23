@@ -34,10 +34,15 @@ class PostsController extends Controller
             'image' => ['image'],
         ]);
 
-        $imagePath = request('image')->store('uploads', 'public');
+        $imagePath = "";
+        $image = request('image');
+        
+        if (!empty($image)){
+            $imagePath = $image->store('uploads', 'public');
 
-        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
-        $image->save();
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+            $image->save();
+        }
 
         auth()->user()->posts()->create([
             'caption' => $data['caption'],
@@ -45,7 +50,7 @@ class PostsController extends Controller
             'post_id'  => 0
         ]);
 
-        return redirect('/profile/' . auth()->user()->id);
+        return back();
     }
 
     public function show(\App\Post $post)
@@ -68,12 +73,11 @@ class PostsController extends Controller
         $data = request()->validate([
             'caption'=> 'required',
             'post_id'=> 'required',
+            
         ]);
 
-        $cap = nl2br($data['caption']);
-
         auth()->user()->posts()->create([
-            'caption' => $cap,
+            'caption' => $data['caption'],
             'user_id' => auth()->user()->id,
             'image' => "auth()->user()->image",
             'post_id' => $data['post_id'],

@@ -11,7 +11,9 @@
                                 </a>
                             </span>
                         </p>
-                        {!! ($comment->caption) !!}
+                        <div v-pre>
+                            <pre style="white-space: pre-wrap;">{{ $comment->caption }}</pre>
+                        </div>
                     </div>
                 </div>
             </div>

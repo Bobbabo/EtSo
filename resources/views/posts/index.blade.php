@@ -2,30 +2,63 @@
 @section('content')
 
 <div class="container">
+    <center>
+        <div style="background-color: #B5FFC0; margin-bottom:20px; width: 30%; padding-top: 10px; 
+        padding-bottom:10px;font-weight: bold; color:#4F514F;
+        border-style:solid; border-color:#D6FFE9; border-width:10px" data-toggle="modal" data-target="#exampleModal"> 
+            CREATE A POST 
+        </div>
+    </center>
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Create a new post</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                @include('posts.create')
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
     <div class="scrolling-pagination">
         @foreach($posts as $post)
+
+            <div style="display: flex; align-items:center; padding: 8px">
+                <img src="{{ $post->user->profile->profileImage() }}" class="rounded-circle w-100" 
+                    style="max-width: 40px; margin-right:16px">
+                <div class="font-weight-bold">
+                    <a href="/profile/{{ $post->user->id }}">
+                        <span class="text-dark">{{ $post->user->username }}</span>
+                    </a>
+                    <a href="#" class="pl-3">Follow</a>
+                </div>
+            </div>
+
             <a href="/p/{{ $post->id }}">
                 <article class="postbox" style="margin-bottom: 20px;padding-top:20px">
-                    <div class="row">
-                        <div class="col-6 offset-3">
-                            <a href="/p/{{ $post->id }}">
-                                <img src="/storage/{{ $post->image }}" class="w-100">
-                            </a>
-                        </div>
+                    @if($post->image != "")
+                    <div>
+                        <center><img src="/storage/{{ $post->image }}" class="w-50" style=""></center>
                     </div>
-                    <div class="row pt-2 pb-4">
-                        <div class="col-6 offset-3">
-                            <div style="overflow: hidden">
-                                <p>
-                                <span class="font-weight-bold">
-                                    <a href="/profile/{{ $post->user->id }}">
-                                        <span class="text-dark">{{ $post->user->username }}</span>
-                                    </a>
-                                </span> {{ $post->caption }}
-                                </p>
+                    @endif 
+                    <a href="/p/{{ $post->id }}"> </a>
+                    <div style="word-break: break-all; padding-top:10px; padding-left: 20px; padding-right: 20px">
+                        <p>
+                            <span class="font-weight-bold">
+                            <div v-pre>
+                                <pre style="white-space: pre-wrap;">{{ $post->caption }}</pre>
                             </div>
-                        </div>
-                    </div>
+                        </p>               
+                    </div>  
+
+                    
                 </article>
             </a>
 

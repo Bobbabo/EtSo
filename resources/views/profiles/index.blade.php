@@ -38,7 +38,9 @@
     <div class="row pt-5">
         @foreach($user->posts as $post)
             <div class="col-4 pb-4">
-                {{$post->caption}}
+                <div v-pre>
+                    <pre style="white-space: pre-wrap;">{{ $post->caption }}</pre>
+                </div>
                 {{$post->created_at}}
                 <a href="/p/{{ $post->id }}">
                     <img src="/storage/{{ $post->image }}" class="w-100">

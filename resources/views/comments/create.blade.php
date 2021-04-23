@@ -8,14 +8,14 @@
 
                 <div class="form-group">
 
-                    <textarea placeholder="Type your comment" id="message"
-                        class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}"
+                    <textarea placeholder="Type your comment" id="caption"
+                        class="form-control{{ $errors->has('caption') ? ' is-invalid' : '' }}"
                         name="caption">
                     </textarea>
                 
-                    @if ($errors->has('message'))
+                    @if ($errors->has('caption'))
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('message') }}</strong>
+                            <strong>{{ $errors->first('caption') }}</strong>
                         </span>
                     @endif
                     <input type="hidden" name="post_id" value="{{ $post_id }}" />

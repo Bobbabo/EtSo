@@ -1,25 +1,17 @@
-@extends('layouts.app')
-
-@section('content')
 <div class="container">
     <form action="/p" enctype="multipart/form-data" method="post">
         @csrf
 
         <div class="row">
             <div class="col-8 offset-2">
-
-                <div class="row">
-                    <h1>Add New Post</h1>
-                </div>
                 <div class="form-group row">
-                    <label for="caption" class="col-md-4 col-form-label">Post Caption</label>
 
-                    <input id="caption"
-                           type="text"
-                           class="form-control{{ $errors->has('caption') ? ' is-invalid' : '' }}"
-                           name="caption"
-                           value="{{ old('caption') }}"
-                           autocomplete="caption" autofocus>
+                    <textarea placeholder="Type your comment" id="caption"
+                        class="form-control{{ $errors->has('caption') ? ' is-invalid' : '' }}"
+                        name="caption"
+                        value="{{ old('caption') }}"
+                        autocomplete="caption" autofocus>
+                    </textarea>
 
                     @if ($errors->has('caption'))
                         <span class="invalid-feedback" role="alert">
@@ -46,4 +38,3 @@
         </div>
     </form>
 </div>
-@endsection
