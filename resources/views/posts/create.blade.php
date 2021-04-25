@@ -6,7 +6,7 @@
             <div class="col-8 offset-2">
                 <div class="form-group row">
 
-                    <textarea placeholder="Type your comment" id="caption"
+                    <textarea placeholder="Type your caption" id="caption"
                         class="form-control{{ $errors->has('caption') ? ' is-invalid' : '' }}"
                         name="caption"
                         value="{{ old('caption') }}"
@@ -28,6 +28,14 @@
                     @if ($errors->has('image'))
                         <strong>{{ $errors->first('image') }}</strong>
                     @endif
+                </div>
+
+                <div>
+                    What type of post is this?
+                    <form>
+                        <input type="radio" name="tag" value="Social" checked>Social
+                        <input type="radio" name="tag" value="News">News
+                    </form>
                 </div>
 
                 <div class="row pt-4">

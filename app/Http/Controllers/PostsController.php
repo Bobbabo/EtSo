@@ -15,6 +15,7 @@ class PostsController extends Controller
 
     public function index()
     {
+
         $users = auth()->user()->following()->pluck('profiles.user_id');
 
         $posts = Post::whereIn('user_id', $users)->with('user')->where('post_id','=',0)->latest()->paginate(5);
@@ -32,6 +33,7 @@ class PostsController extends Controller
         $data = request()->validate([
             'caption' => 'required',
             'image' => ['image'],
+            'tag' => 'required',
         ]);
 
         $imagePath = "";
@@ -47,7 +49,8 @@ class PostsController extends Controller
         auth()->user()->posts()->create([
             'caption' => $data['caption'],
             'image' => $imagePath,
-            'post_id'  => 0
+            'post_id'  => 0,
+            'tag' => $data['tag'],
         ]);
 
         return back();
@@ -55,7 +58,12 @@ class PostsController extends Controller
 
     public function show(\App\Post $post)
     {
-        return view('posts.show', compact('post'));
+        $user = auth()->user();
+        $likes = ($user) ? $user->likes->contains($post) : false;
+
+        $likesCount = $post->likes->count();
+
+        return view('posts.show', compact('post','likes', 'likesCount'));
     }
 
 
@@ -81,6 +89,7 @@ class PostsController extends Controller
             'user_id' => auth()->user()->id,
             'image' => "auth()->user()->image",
             'post_id' => $data['post_id'],
+            'tag' => "",
         ]);
 
 

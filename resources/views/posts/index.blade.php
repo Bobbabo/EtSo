@@ -37,12 +37,43 @@
                     <a href="/profile/{{ $post->user->id }}">
                         <span class="text-dark">{{ $post->user->username }}</span>
                     </a>
-                    <a href="#" class="pl-3">Follow</a>
+                </div>
+
+                <follow-button user-id="{{ $post->user_id }}" 
+                    follows="{{ (auth()->user()) ? auth()->user()->following->contains($post->user->id) : false }}">
+                </follow-button>
+
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    ...<span class="caret"></span>
+                </a>
+    
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#"
+                        onclick="event.preventDefault();
+                                        document.getElementById('report-form').submit();">
+                        {{ __('Report') }}
+                    </a>
+    
+                    <form id="report-form" action="#" method="GET" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
             </div>
 
+
+
+            
             <a href="/p/{{ $post->id }}">
                 <article class="postbox" style="margin-bottom: 20px;padding-top:20px">
+                    <a href="/p/{{ $post->id }}"></a>
+
+                    <div style="display: flex; justify-content:space-between" >
+                        {{$post->tag}}
+                    
+                    </div>
+                    
+
+
                     @if($post->image != "")
                     <div>
                         <center><img src="/storage/{{ $post->image }}" class="w-50" style=""></center>

@@ -19,7 +19,15 @@ Route::get('/email', function () {
     return new NewUserWelcomeMail();
 });
 
+Route::get('search', 'SearchController@search')->name('search');
+Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
+
+Route::get('/chat', 'ChatsController@index');
+Route::get('messages', 'ChatsController@fetchMessages');
+Route::post('messages', 'ChatsController@sendMessage');
+
 Route::post('follow/{user}', 'FollowsController@store');
+Route::post('like/{post}', 'LikesController@store');
 
 Route::get('/', 'PostsController@index');
 Route::get('/p/create', 'PostsController@create');

@@ -35,8 +35,9 @@
             <hr style="position: relative; width: 90%; margin-left:5%; margin-right:5%;">
         
         <div> 
-            like
+            <like-button post-id="{{$post->id}}"  likes="{{$likes}}"> </like-button>                     
         </div>
+        <div class="pr-5"><strong>{{ $likesCount }}</strong> likes</div>
 
         @include('comments.create',['post_id'=> $post->id])
         

@@ -25,6 +25,8 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "jscroll": "^2.4.1"
+        "jscroll": "^2.4.1",
+        "laravel-echo": "^1.10.0",
+        "pusher-js": "^7.0.3"
     }
 }

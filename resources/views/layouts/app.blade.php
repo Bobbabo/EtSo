@@ -28,6 +28,12 @@
                     <div class="pl-3">EtSo</div>
                 </a>
 
+                <form action="{{ route('search') }}" method="GET">
+                    <input type="text" name="search" required/>
+                    <button type="submit" style="border-radius: 12px; background-color: #B5FFC1; color: black;
+                    border: 0px solid white">Search</button>
+                </form>
+
                  <!-- For small screen size -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -75,7 +81,6 @@
                                 </div>
                             </li>
                             
-                    
                             
                         @endguest
                     </ul>
