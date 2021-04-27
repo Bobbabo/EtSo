@@ -60,19 +60,9 @@
                 </div>
             </div>
 
-
-
-            
-            <a href="/p/{{ $post->id }}">
+            <a href="/p/{{ $post->id }}" >
                 <article class="postbox" style="margin-bottom: 20px;padding-top:20px">
                     <a href="/p/{{ $post->id }}"></a>
-
-                    <div style="display: flex; justify-content:space-between" >
-                        {{$post->tag}}
-                    
-                    </div>
-                    
-
 
                     @if($post->image != "")
                     <div>
@@ -80,7 +70,11 @@
                     </div>
                     @endif 
                     <a href="/p/{{ $post->id }}"> </a>
-                    <div style="word-break: break-all; padding-top:10px; padding-left: 20px; padding-right: 20px">
+                    {{$post->tag}}
+                    
+                    <div style="word-break: break-all; padding-top:10px; padding-bottom:10px; 
+                        padding-left: 20px; padding-right: 20px">
+        
                         <p>
                             <span class="font-weight-bold">
                             <div v-pre>
@@ -88,8 +82,6 @@
                             </div>
                         </p>               
                     </div>  
-
-                    
                 </article>
             </a>
 
