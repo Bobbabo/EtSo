@@ -18,7 +18,7 @@
                             <strong>{{ $errors->first('caption') }}</strong>
                         </span>
                     @endif
-                    <input type="hidden" name="post_id" value="{{ $post_id }}" />
+                    <input type="hidden" name="post_id" value="{{ $post_id }}"/>
                     <button class="btn btn-primary">Post Comment</button>
                                    
                 </div>            

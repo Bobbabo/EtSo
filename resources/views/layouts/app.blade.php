@@ -29,7 +29,7 @@
                 </a>
 
                 <form action="{{ route('search') }}" method="GET">
-                    <input type="text" name="search" required/>
+                    <input type="text" name="search" required style="border: 0"/>
                     <button type="submit" style="border-radius: 12px; background-color: #B5FFC1; color: black;
                     border: 0px solid white">Search</button>
                 </form>
@@ -90,54 +90,78 @@
 
         <!-- sidebar nav -->
 
-        
-
        <div style="display: flex; justify-content: space-between;">
 
-
+             <!-- left sidebar -->
             <div class=".col-md-3" style="width: 25%; ">
                 @guest
 
                 @else
                 <div  id="sidebar" style="z-index: 998; height: 100%;">
-                    <nav id="sidebar-nav"  style="position: fixed; background: #B5FFC1; height: 100%; width: 25%;  padding-top: 70px; ">
-                        <ul class="col-1 nav nav-pills nav-stacked">
-                            <li></li>
-                        </ul>
+                    <nav id="sidebar-nav"  style="position: fixed; background: #B5FFC1; height: 100%; width: 25%;  
+                    padding-top: 70px; ">
+                        <div style="display: flex; flex-direction:column; justify-content:center; margin-top:50px">
+                            <a href="{{ url('/') }}" style="text-decoration: none;">
+                                <div class="button-button">Feed</div>
+                            </a>
+                            <a href="/profile/{{ Auth::user()->id }}" style="text-decoration: none;">
+                                <div class="button-button">Your Profile</div>
+                            </a>
+                            <a href="{{ url('/chat') }}" style="text-decoration: none;">
+                                <div class="button-button">Chat</div>
+                            </a>
+                            <a href="{{ url('/values') }}" style="text-decoration: none;">
+                                <div class="button-button">Our Values</div>
+                            </a>
+                        </div>
                     </nav>
                 </div>
                 @endguest
             </div>
 
+            <!-- page content -->
             <div class=".col-md-8" style="padding-top: 70px; width: 40%;">
                 <main class="py-4">
                     @yield('content')
                 </main>
             </div>
-    
+
+
+            <!-- right sidebar -->
             <div class=".col-md-3" style="width: 25%; " >
                 @guest
                 @else
                 <div  id="sidebar"  style="z-index: 998; height:100%;">
                     <nav id="sidebar-nav" style="position: fixed;  background: #B5FFC1; height: 100%; width: 25%;  padding-top: 70px;">
-                        <ul class="col-1 nav nav-pills nav-stacked">
-                            <li></li>
-                        </ul>
+                        <div style="display: flex; flex-direction:column; justify-content:center; margin-top:50px">
+                            @include('info.sidebar')
+                        </div>
                     </nav>
                 </div>
                 @endguest
             </div>
-
-           
-
-       </div>
-
-
-        
-        
+       </div>       
     </div>
-    
 
-
+    <div class="modal fade" id="infoSidebarModal" tabindex="-1" role="dialog" aria-labelledby="infoSidebarModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="infoSidebarModalLabel">About the sidebar</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h5>
+                  This is the sidebar
+              </h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Understood!</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
 </html>

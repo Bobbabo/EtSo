@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Post;
+use App\Message;
+use App\Events\NewMessage; 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
 
 class ProfilesController extends Controller
@@ -13,29 +15,19 @@ class ProfilesController extends Controller
     {
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
 
-        $postCount = Cache::remember(
-            'count.posts.' . $user->id,
-            now()->addSeconds(30),
-            function () use ($user) {
-                return $user->posts->count();
-            });
+        $postCount = $user->posts->count();
 
-        $followersCount = Cache::remember(
-            'count.followers.' . $user->id,
-            now()->addSeconds(30),
-            function () use ($user) {
-                return $user->profile->followers->count();
-            });
+        $followersCount = $user->profile->followers->count();
+       
 
-        $followingCount = Cache::remember(
-            'count.following.' . $user->id,
-            now()->addSeconds(30),
-            function () use ($user) {
-                return $user->following->count();
-            });
+        $followingCount = $user->following->count();
+            
 
-        return view('profiles.index', compact('user', 'follows', 'postCount', 'followersCount', 'followingCount'));
+        $posts = Post::where('user_id', $user->id)->with('user')->where('post_id','=',0)->latest()->paginate(5);
+
+        return view('profiles.index', compact('user', 'follows', 'postCount', 'followersCount', 'followingCount','posts'));
     }
+
 
     public function edit(User $user)
     {
@@ -70,5 +62,63 @@ class ProfilesController extends Controller
         ));
 
         return redirect("/profile/{$user->id}");
+    }
+
+
+    // Chat logic
+
+
+    public function getContacts(){
+
+        //Gets all users that follow the authenticated user
+
+        $contacts = auth()->user()->profile->followers;
+        
+        //User::where('id',auth()->user()->profile->followers)->get();
+
+        $unreadIds = Message::select(\DB::raw('`from` as sender_id, count(`from`) as messages_count'))
+            ->where('to', auth()->id())
+            ->where('read', false)
+            ->groupBy('from') //[["sender_id" => 4, "messages_count" => 15]]
+            ->get();
+
+
+        $contacts = $contacts->map(function($contact) use ($unreadIds) {
+            $contactUnread = $unreadIds->where('sender_id', $contact->id)->first();
+
+            $contact ->unread = $contactUnread ? $contactUnread->messages_count : 0;
+
+            return $contact;
+        });
+        return response()->json($contacts);
+    }
+
+    public function getConversation($id){
+
+        // Mark as read
+        Message::where('from', $id)->where('to',auth()->id())->update(['read' => true]);
+
+        $messages = Message::where(function($q) use ($id){
+            $q->where('from', auth()->id());
+            $q->where('to', $id);
+        })->orWhere(function($q) use ($id){
+            $q->where('from', $id);
+            $q->where('to',auth()->id());
+        })
+        ->get();
+
+        return response()->json($messages);
+    }
+
+    public function send(Request $request){
+        $message=Message::create([
+            'from' =>  auth()->user()->id,
+            'to' => $request->contact_id,
+            'message' => $request->text
+        ]);
+
+        broadcast(new NewMessage($message));
+
+        return response()->json($message);
     }
 }

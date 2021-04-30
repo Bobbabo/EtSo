@@ -30,35 +30,26 @@
                 </div>
 
                 <div class="form-group row">
+
                     <label for="description" class="col-md-4 col-form-label">Description</label>
 
-                    <input id="description"
+                    <textarea placeholder="Type your description" id="description"
+                        class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
+                        name="description"
+                        value="{{ old('description') }}"
+                        autocomplete="description" autofocus>
+                    </textarea>
+
+                    {{-- <input id="description"
                            type="text"
                            class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
                            name="description"
                            value="{{ old('description') ?? $user->profile->description }}"
-                           autocomplete="description" autofocus>
+                           autocomplete="description" autofocus> --}}
 
                     @if ($errors->has('description'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('description') }}</strong>
-                        </span>
-                    @endif
-                </div>
-
-                <div class="form-group row">
-                    <label for="url" class="col-md-4 col-form-label">URL</label>
-
-                    <input id="url"
-                           type="text"
-                           class="form-control{{ $errors->has('url') ? ' is-invalid' : '' }}"
-                           name="url"
-                           value="{{ old('url') ?? $user->profile->url }}"
-                           autocomplete="url" autofocus>
-
-                    @if ($errors->has('url'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('url') }}</strong>
                         </span>
                     @endif
                 </div>

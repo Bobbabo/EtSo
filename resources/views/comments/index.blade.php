@@ -2,6 +2,13 @@
     <div class="scrolling-comments" style="height: 200px; overflow: visible; width: 100%;">
         @foreach($comments as $comment)
             <div class="row pt-2 pb-4 postbox">
+
+                @if (Auth::user()->id==$comment->user->id)
+                <a href="/p/remove/{{ $comment->id }}">
+                    <span class="text-dark">Remove</span>
+                </a>
+                @endif
+
                 <div class="col" style="word-break: break-all;">
                     <div>
                         <p>

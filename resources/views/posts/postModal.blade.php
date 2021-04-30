@@ -1,6 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
 <div class="container">
 
     @if (Auth::user()->id==$post->user->id)
@@ -8,7 +5,7 @@
         <span class="text-dark">Remove</span>
     </a>
     @endif
-    
+
     <div style="display: flex; align-items:center; padding: 8px">
         <img src="{{ $post->user->profile->profileImage() }}" class="rounded-circle w-100" 
             style="max-width: 40px; margin-right:16px">
@@ -77,4 +74,3 @@
        
     </div>
 </div>
-@endsection

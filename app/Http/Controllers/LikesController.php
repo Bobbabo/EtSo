@@ -16,4 +16,9 @@ class LikesController extends Controller
     {
         return auth()->user()->likes()->toggle($post);
     }
+
+    public function reliability(Post $post)
+    {
+        return auth()->user()->likes()->toggle($post);
+    }
 }

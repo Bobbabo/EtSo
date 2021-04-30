@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Http;
 
 class PostsController extends Controller
 {
@@ -15,6 +16,20 @@ class PostsController extends Controller
 
     public function index()
     {
+
+        // $response = Http::withToken('AIzaSyAuNJT6szycI1oiRoYtFxnwjkkmlg8hoSM')
+        // ->get('https://factchecktools.googleapis.com/v1alpha1/claims:search', [
+        //     'query' => "covid"
+        // ]);
+
+        // $response = Http::get('https://www.purgomalum.com/service/json?text=this is some test input', [
+        //     'text' => "what the fuck"
+        // ]);
+
+        //$response = Http::get('http://example.com');
+        
+
+        // dd($response->json());
 
         $users = auth()->user()->following()->pluck('profiles.user_id');
 
@@ -27,6 +42,14 @@ class PostsController extends Controller
     {
         return view('posts.create');
     }
+
+    public function remove(\App\Post $post)
+    {
+        Post::destroy($post->id);
+
+        return back();
+    }
+    
 
     public function store()
     {
@@ -66,13 +89,10 @@ class PostsController extends Controller
         return view('posts.show', compact('post','likes', 'likesCount'));
     }
 
-
-
     # Comment logic
 
     public function commentIndex()
     {
-        
         return view('comments.index', compact('comments'));
     }
 
@@ -92,7 +112,10 @@ class PostsController extends Controller
             'tag' => "",
         ]);
 
+        $post = Post::where('id',$data['post_id'])->first();
 
-        return back();
+        return redirect()->route('post.show', ['post' => $data['post_id']]);
+
+
     }
 }

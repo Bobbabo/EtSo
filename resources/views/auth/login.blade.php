@@ -2,6 +2,12 @@
 
 @section('content')
 <div class="container">
+    <h4>Welcome to EtSo!</h4>
+
+    If it is your first time here, please click the  
+        <a href="{{ route('register') }}">{{ __('Register') }}</a> 
+        button to sign up.
+
     <div class="row justify-content-center">
         <div class="col">
             <div class="card">

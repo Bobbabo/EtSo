@@ -2,10 +2,11 @@
 @section('content')
 
 <div class="container">
+
+    @include('info.feed')
+
     <center>
-        <div style="background-color: #B5FFC0; margin-bottom:20px; width: 30%; padding-top: 10px; 
-        padding-bottom:10px;font-weight: bold; color:#4F514F;
-        border-style:solid; border-color:#D6FFE9; border-width:10px" data-toggle="modal" data-target="#exampleModal"> 
+        <div class ="create-button" data-toggle="modal" data-target="#exampleModal"> 
             CREATE A POST 
         </div>
     </center>
@@ -25,7 +26,6 @@
           </div>
         </div>
       </div>
-    
 
     <div class="scrolling-pagination">
         @foreach($posts as $post)
@@ -39,11 +39,8 @@
                     </a>
                 </div>
 
-                <follow-button user-id="{{ $post->user_id }}" 
-                    follows="{{ (auth()->user()) ? auth()->user()->following->contains($post->user->id) : false }}">
-                </follow-button>
-
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" 
+                aria-haspopup="true" aria-expanded="false" v-pre>
                     ...<span class="caret"></span>
                 </a>
     
@@ -60,18 +57,16 @@
                 </div>
             </div>
 
-            <a href="/p/{{ $post->id }}" >
-                <article class="postbox" style="margin-bottom: 20px;padding-top:20px">
-                    <a href="/p/{{ $post->id }}"></a>
+        
+                <article class="postbox" style="margin-bottom: 20px;padding-top:20px" 
+                data-toggle="modal" data-target="#postModal{{$post->id}}">
 
                     @if($post->image != "")
                     <div>
                         <center><img src="/storage/{{ $post->image }}" class="w-50" style=""></center>
                     </div>
                     @endif 
-                    <a href="/p/{{ $post->id }}"> </a>
                     {{$post->tag}}
-                    
                     <div style="word-break: break-all; padding-top:10px; padding-bottom:10px; 
                         padding-left: 20px; padding-right: 20px">
         
@@ -83,9 +78,30 @@
                         </p>               
                     </div>  
                 </article>
-            </a>
+         
 
+            <div class="modal fade" id="postModal{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+       
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        @include('posts.postModal', ['likes' => (auth()->user()) ? auth()->user()->likes->contains($post) : false, 'likesCount'=> $post->likes->count()])
+                    </div>
+                  </div>
+                </div>
+              </div>
         @endforeach
+            <div class="postbox" style="text-align: center">
+                <br><br><br>
+                <h5>It is not healthy to be stuck in an infinite feed!
+                    <br>Consider taking a break!</h5>
+               <br><br><br>
+            </div>
 
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
@@ -113,11 +129,6 @@
                 $('ul.pagination').remove();
             }
         });
-    });
-
-    $(".postbox").click(function() {
-        window.location = $(this).find("a").attr("href"); 
-        return false;
     });
 
 </script>
