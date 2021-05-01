@@ -44,9 +44,11 @@ class User extends Authenticatable
         parent::boot();
 
         static::created(function ($user) {
-            $user->profile()->create([
+            $profile=$user->profile()->create([
                 'title' => $user->username,
             ]);
+
+            $user->following()->sync([$user->id]);
 
             #Mail::to($user->email)->send(new NewUserWelcomeMail());
         });
