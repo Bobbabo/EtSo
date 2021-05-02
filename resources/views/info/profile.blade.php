@@ -17,7 +17,8 @@
         </div>
         <div class="modal-body">
           <h5>
-              This is the profile
+            In the current implementation, every profile is public and can be followed by anyone. 
+            In the future, a user will be able to decide for themselves who they want to be able to follow their profile.
           </h5>
         </div>
         <div class="modal-footer">

@@ -17,7 +17,12 @@
         </div>
         <div class="modal-body">
           <h5>
-              This is the chat
+            Currently, you can chat with any user that follows you. This also means, that for them to be able to chat with you, 
+            you will have to make sure you are following their profile. 
+            <br><br>
+            Future implementations of the chat will feature group chats, emojis, polls, and various other user experience 
+            improvements.
+            
           </h5>
         </div>
         <div class="modal-footer">

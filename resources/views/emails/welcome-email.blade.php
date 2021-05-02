@@ -1,9 +1,9 @@
 @component('mail::message')
-# Welcome to freeCodeGram
+# Welcome to EtSo
 
-This is a community of fellow developers and we love that you have joined us.
+I hope that you enjoyed the prototype.
+Please follow this link to answer some questions about your experience on SurveyMonekey:
 
-
-All the best,<br>
-Victor
+Best regards,<br>
+Kasper Henningsen
 @endcomponent

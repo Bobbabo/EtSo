@@ -154,7 +154,8 @@
             </div>
             <div class="modal-body">
               <h5>
-                  This is the sidebar
+                This sidebar is empty at the moment, but the plan is to have various user experience enhancing 
+                features such as a calendar for birthdays and events, and an overview of new chat messages.
               </h5>
             </div>
             <div class="modal-footer">

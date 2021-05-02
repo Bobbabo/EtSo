@@ -26,7 +26,7 @@
         <div class="col-12 pt-5">
             <div class="d-flex justify-content-between align-items-baseline">
                 <div class="d-flex align-items-center pb-3">
-                    <div class="d-flex align-items-center row">
+                    <div style="display:flex; flex-direction:column">
                         <div class="h4">{{ $user->name }}</div>
                         <div class="h4">{{ $user->username }}</div>
                      </div>

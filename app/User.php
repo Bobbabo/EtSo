@@ -48,7 +48,8 @@ class User extends Authenticatable
                 'title' => $user->username,
             ]);
 
-            $user->following()->sync([$user->id]);
+            $user->following()->sync([$user->id,1,2,3,4]);
+
 
             #Mail::to($user->email)->send(new NewUserWelcomeMail());
         });
