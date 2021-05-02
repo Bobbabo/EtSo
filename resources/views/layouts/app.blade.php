@@ -35,7 +35,9 @@
                 </form>
 
                  <!-- For small screen size -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -44,6 +46,20 @@
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
+                    <div class="phoneItems">
+                        <a href="{{ url('/') }}" style="text-decoration: none;">
+                            <div class="button-button">Feed</div>
+                        </a>
+                        <a href="/profile/{{ Auth::user()->id }}" style="text-decoration: none;">
+                            <div class="button-button">Your Profile</div>
+                        </a>
+                        <a href="{{ url('/chat') }}" style="text-decoration: none;">
+                            <div class="button-button">Chat</div>
+                        </a>
+                        <a href="{{ url('/values') }}" style="text-decoration: none;">
+                            <div class="button-button">Our Values</div>
+                        </a>
+                    </div>
                     
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
@@ -64,7 +80,8 @@
                             </a>    
 
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" 
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->username }} <span class="caret"></span>
                                 </a>
 
@@ -93,13 +110,11 @@
        <div style="display: flex; justify-content: space-between;">
 
              <!-- left sidebar -->
-            <div class=".col-md-3" style="width: 25%; ">
+            <div style="width: 25%;">
                 @guest
 
-                @else
-                <div  id="sidebar" style="z-index: 998; height: 100%;">
-                    <nav id="sidebar-nav"  style="position: fixed; background: #B5FFC1; height: 100%; width: 25%;  
-                    padding-top: 70px; ">
+                @else             
+                    <nav class="sidebar">
                         <div style="display: flex; flex-direction:column; justify-content:center; margin-top:50px">
                             <a href="{{ url('/') }}" style="text-decoration: none;">
                                 <div class="button-button">Feed</div>
@@ -114,13 +129,12 @@
                                 <div class="button-button">Our Values</div>
                             </a>
                         </div>
-                    </nav>
-                </div>
+                    </nav>          
                 @endguest
             </div>
 
             <!-- page content -->
-            <div class=".col-md-8" style="padding-top: 70px; width: 40%;">
+            <div class="content">
                 <main class="py-4">
                     @yield('content')
                 </main>
@@ -128,16 +142,14 @@
 
 
             <!-- right sidebar -->
-            <div class=".col-md-3" style="width: 25%; " >
+            <div style="width: 25%;" >
                 @guest
                 @else
-                <div  id="sidebar"  style="z-index: 998; height:100%;">
-                    <nav id="sidebar-nav" style="position: fixed;  background: #B5FFC1; height: 100%; width: 25%;  padding-top: 70px;">
+                    <nav class = "sidebar">
                         <div style="display: flex; flex-direction:column; justify-content:center; margin-top:50px">
                             @include('info.sidebar')
                         </div>
                     </nav>
-                </div>
                 @endguest
             </div>
        </div>       
