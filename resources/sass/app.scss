@@ -99,16 +99,6 @@
     
 }
 
-
-.textarea {
-    width: 96%;
-    margin: 10px;
-    resize: none;
-    border-radius: 3px;
-    border: 1px solid lightgray;
-    padding: 6px;
-}
-
 .sidebar{
     position: fixed;  
     background: #B5FFC1; 
@@ -125,6 +115,16 @@
 .phoneItems{
     display: none;
 }
+
+.textarea {
+    width: 96%;
+    margin: 10px;
+    resize: none;
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    padding: 6px;
+}
+
 
 @media screen and (max-width: 700px) {
     .sidebar {
