@@ -50,9 +50,6 @@
                         <a href="{{ url('/') }}" style="text-decoration: none;">
                             <div class="button-button">Feed</div>
                         </a>
-                        <a href="/profile/{{ Auth::user()->id }}" style="text-decoration: none;">
-                            <div class="button-button">Your Profile</div>
-                        </a>
                         <a href="{{ url('/chat') }}" style="text-decoration: none;">
                             <div class="button-button">Chat</div>
                         </a>
