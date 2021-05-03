@@ -50,9 +50,16 @@
                         <a href="{{ url('/') }}" style="text-decoration: none;">
                             <div class="button-button">Feed</div>
                         </a>
+
+                        @guest
+                        @else
                         <a href="{{ url('/chat') }}" style="text-decoration: none;">
                             <div class="button-button">Chat</div>
                         </a>
+                        @endguest
+                        
+                      
+
                         <a href="{{ url('/values') }}" style="text-decoration: none;">
                             <div class="button-button">Our Values</div>
                         </a>

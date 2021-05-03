@@ -22,9 +22,7 @@ Route::get('/email', function () {
 Route::get('search', 'SearchController@search')->name('search');
 Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
 
-Route::get("/chat", function(){
-    return view("chat");
- });
+Route::get("/chat", 'ProfilesController@chat');
 
 Route::post('follow/{user}', 'FollowsController@store');
 Route::post('like/{post}', 'LikesController@store');
@@ -44,6 +42,9 @@ Route::post('/conversation/send', 'ProfilesController@send');
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
 Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
 Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update');
-Route::get('/values', 'HomeController@index')->name('values');
+//Route::get('/values', 'HomeController@index')->name('values');
+Route::get("/values", function(){
+    return view("home");
+ });
 
 

@@ -8,6 +8,8 @@
         <a href="{{ route('register') }}">{{ __('Register') }}</a> 
         button to sign up.
 
+    <a href="{{ url('/values') }}"> Click here to read our values </a>
+
     <div class="row justify-content-center">
         <div class="col">
             <div class="card">
